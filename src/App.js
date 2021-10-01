@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import EmailPasswordAuth from "./EmailPasswordAuth";
+import FacebookAuth from "./FacebookAuth";
+import GithubAuth from "./GithubAuth";
+import GoogleAuth from "./GoogleAuth";
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState({
+    isSignedIn: false,
+    name: "",
+    email: "",
+    photo: "",
+    password: "",
+    error: "",
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <EmailPasswordAuth user={user} setUser={setUser} />
+      <br />
+      <FacebookAuth />
+      <br />
+      <GoogleAuth user={user} setUser={setUser} />
+      <br />
+      <GithubAuth />
     </div>
   );
-}
+};
 
 export default App;
